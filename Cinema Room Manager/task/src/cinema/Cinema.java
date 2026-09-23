@@ -8,7 +8,22 @@ public class Cinema {
         // Write your code here
         Scanner scanner = new Scanner(System.in);
         char[][] array = createArray(scanner);
-        showArray(array);
+        int op = 999;
+        while (op != 0){
+            System.out.println();
+            System.out.println("1. Show the seats");
+            System.out.println("2. Buy a ticket");
+            System.out.println("0. Exit");
+            op = scanner.nextInt();
+            switch (op){
+                case 1:
+                    showArray(array);
+                    break;
+                case 2:
+                    checkSeat(scanner,array);
+                    break;
+            }
+        }
         scanner.close();
 
 
@@ -19,6 +34,14 @@ public class Cinema {
     }
     public static int getSeats(Scanner scanner){
         System.out.println("Enter the number of seats in each row:");
+        return scanner.nextInt();
+    }
+    public static int getTicketRow(Scanner scanner){
+        System.out.println("Enter a row number:");
+        return scanner.nextInt();
+    }
+    public static int getTicketSeat(Scanner scanner){
+        System.out.println("Enter a seat number in that row:");
         return scanner.nextInt();
     }
     public static char[][] createArray(Scanner scanner){
@@ -65,9 +88,31 @@ public class Cinema {
             int backIncome = backRows * seats * 8;
 
             income = frontIncome + backIncome;
-
         }
 
         return income;
+    }
+    public static void checkSeat(Scanner scanner,  char[][] array){
+        int inputRow = getTicketRow(scanner);
+        int inputSeat = getTicketSeat(scanner);
+        int row = inputRow - 1;
+        int seat = inputSeat - 1;
+        array[row][seat] = 'B';
+        int frontRows = array.length /2;
+        int ticket = 0;
+        int totalNumberOfSeats = array.length * array[array.length-1].length;
+        if (totalNumberOfSeats <= 60){
+            ticket = 10;
+            System.out.println("Ticket price: $" + ticket);
+        } else {
+            if (inputRow <= frontRows){
+                ticket = 10;
+                System.out.println("Ticket price: $" + ticket);
+            } else {
+                ticket = 8;
+                System.out.println("Ticket price: $" + ticket);
+            }
+
+        }
     }
 }

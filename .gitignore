@@ -1,4 +1,5 @@
 # Project exclude paths
+.idea
 /.gradle/
 /Cinema Room Manager/task/build/
 /Cinema Room Manager/task/out/
