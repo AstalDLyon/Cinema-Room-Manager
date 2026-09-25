@@ -118,7 +118,7 @@ public class Cinema {
             row = inputRow - 1;
             seat = inputSeat - 1;
 
-            if (array[row][seat] == 'B') {
+            if (array[row][seat] == 'C') {
                 System.out.println("That ticket has already been purchased!");
                 System.out.println();
                 continue;
